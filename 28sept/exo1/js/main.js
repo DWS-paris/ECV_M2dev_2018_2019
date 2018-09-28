@@ -64,6 +64,38 @@ document.addEventListener('DOMContentLoaded', () => {
             .then( () => { todoForm.elements[0].value = '' })
             .catch( data => { console.error(data) });
         };
+
+        // Créer une fonction pour afficher les todoes dans le DOM
+        const displayTodoes = (todoArray) => {
+            // Sélection et vidage de la liste
+            let todoList = document.querySelector('ul');
+            todoList.innerHTML = '';
+
+            // Bouckee sur le tableau de données
+            todoArray.forEach( todo => {
+                // Ajout du content
+                let todoLi = document.createElement('li');
+                todoLi.innerHTML = `<p>${todo.content}</p>`;
+
+                let todoAction = document.createElement('div');
+
+                // Création de l'icone pour éditer un item
+                let editTag = document.createElement('i');
+                todo.isDone ? editTag.className = 'fas fa-check-circle' : editTag.className = 'far fa-check-circle'
+                editTag.addEventListener('click', checkboxChanged.bind(this, todo));
+
+                // Création de l'icone pour supprimer un item
+                let deleteTag = document.createElement('i');
+                deleteTag.className = 'fas fa-trash-alt';
+                deleteTag.addEventListener('click', deleteItem.bind(this, todo))
+
+                // Ajout des balises dans le DOM
+                todoAction.appendChild(editTag)
+                todoAction.appendChild(deleteTag)
+                todoLi.appendChild(todoAction)
+                todoList.appendChild(todoLi)
+            })
+        };
     //
 
     /*
