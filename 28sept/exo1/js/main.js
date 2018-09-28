@@ -34,7 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         function getAllDocs(){
             innerDB.allDocs({ include_docs: true, descending: true })
             .then( pouchData => {
-                console.log(pouchData);
+                let todoArray = [];
+                const rawData = pouchData.rows;
+
+                // Définition de la collections d'objets à afficher dasn le DOM
+                rawData.forEach( item => {
+                    todoArray.push( new Todo( item.id, item.doc.content, item.doc.isDone ) )
+                })
+                console.log(todoArray)
+                // Afficher la liste des items
+                displayTodoes(todoArray);
             })
             .catch( pouchData => {
                 console.error(pouchData);
@@ -94,6 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 todoAction.appendChild(deleteTag)
                 todoLi.appendChild(todoAction)
                 todoList.appendChild(todoLi)
+            })
+        };
+    
+        // Fonction pour éditer un item
+        const checkboxChanged = (todo) => {
+            // Selectionner l'item à modifier
+            innerDB.get( todo._id )
+            .then( docData => {
+                console.log(docData);
+            })
+            .catch( docData => {
+                console.error(docData);
             })
         };
     //
