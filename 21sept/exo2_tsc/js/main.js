@@ -18,4 +18,8 @@ var newUser = {
     fullname: "Julien Noyer",
     isMajor: true
 };
+var sayHello = function (user) {
+    console.log(user.fullname);
+};
+sayHello(newUser);
 //

@@ -34,4 +34,11 @@ Typer un objet en TS
         isMajor: true
     }
 
+
+    const sayHello = ( user:User ) => {
+        console.log( user.fullname )
+    }
+
+    sayHello(newUser);
+
 //
