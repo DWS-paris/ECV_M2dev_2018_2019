@@ -1,0 +1,12 @@
+{
+  "todoes": [
+    {
+      "id": 2
+    },
+    {
+      "content": "hello",
+      "user": "fuu",
+      "id": 3
+    }
+  ]
+}
