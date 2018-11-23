@@ -1,12 +1,19 @@
 {
   "todoes": [
     {
+      "content": "Test",
+      "user": "fuu",
+      "isDone": false,
+      "id": 1
+    },
+    {
       "id": 2
     },
     {
-      "content": "hello",
-      "user": "fuu",
       "id": 3
+    },
+    {
+      "id": 4
     }
   ]
 }

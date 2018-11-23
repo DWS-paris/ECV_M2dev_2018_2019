@@ -12,7 +12,6 @@ Créer une fonction pour vérifier les données d'une requête
                 console.log('MISS', prop)
                 miss.push(prop)
             };
-            
         });
 
         // Vérifier les champs en trop
