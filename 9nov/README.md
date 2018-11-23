@@ -4,6 +4,7 @@ Une fois le dossier du 9 novembre téléchargé, vous devez modifier le code pou
 
 - Un service pour gérer les requêtes utilisateur (cf. dossier du 19 octobre)
 - Un service pour gérer les réponses du serveur (cf. dossier du 19 octobre)
+- Modifier la route auth pour y ajouter le login
 - Un model pour crèer un chat  (cf. dossier du 9 novembre)
 - Une route et sont controleur pour le chat :
     - Créer un message chat
