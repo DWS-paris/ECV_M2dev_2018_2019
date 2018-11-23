@@ -11,3 +11,5 @@ Une fois le dossier du 9 novembre téléchargé, vous devez modifier le code pou
     - charger les nouveaux messages
 
 Vous vous sentez la nécessité de le faire, vous pouvez créer des routes fronts pour afficher les résultat dans une vue HTML (ou EJS)
+
+__Votre travail est à livrer sur un répetoire GitHub ou GitLab.__
