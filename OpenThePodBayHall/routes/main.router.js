@@ -24,7 +24,7 @@ Define routers
 
     // Child
     const authRouter = new AuthRouterClass();
-    const chatRouter = new ChatRouterClass({ passport });
+    const chatRouter = new ChatRouterClass( { passport } );
 //
 
 /*

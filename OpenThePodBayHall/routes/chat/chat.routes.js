@@ -15,6 +15,7 @@ Imports
 Routes definition
 */
     class ChatRouterClass {
+        
         /* 
         Injection de Passport dans la class du Router
         Passeport sera utiliser en middleware afin d'authentifier l'utilisateur avant se requête
