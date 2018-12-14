@@ -320,11 +320,16 @@ Imports and config
 
 // Config
 var SigninPageComponent = /** @class */ (function () {
-    function SigninPageComponent(FormBuilder, AuthService) {
+    // Injectr value in the class
+    function SigninPageComponent(FormBuilder, // Inject "FormBuilder" in the class
+    AuthService // Inject the service you need to use in the class
+    ) {
         var _this = this;
         this.FormBuilder = FormBuilder;
         this.AuthService = AuthService;
+        // Create a function to set from
         this.initForm = function () {
+            // Use "FormBuilder" to define your needed form values
             _this.form = _this.FormBuilder.group({
                 first_name: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                 last_name: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -332,13 +337,18 @@ var SigninPageComponent = /** @class */ (function () {
                 password: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
             });
         };
+        // Create a function to register user
         this.signin = function () {
-            // Vérifier les champs
+            /*
+            Send data to the service
+            - Data must be "UserModel" typed (cf. AuthService code)
+            */
             _this.AuthService.signin(_this.form.value)
                 .then(function (apiResponse) { return console.log(apiResponse); })
                 .catch(function (apiResponse) { return console.error(apiResponse); });
         };
     }
+    // Hoook ngOnInit: eq. DOMContentLoaded for a component
     SigninPageComponent.prototype.ngOnInit = function () {
         this.initForm();
     };
@@ -355,7 +365,8 @@ var SigninPageComponent = /** @class */ (function () {
         // To use "ngOnInit" hook you need to implelment it in the class
         ,
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
+            _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] // Inject the service you need to use in the class
+        ])
     ], SigninPageComponent);
     return SigninPageComponent;
 }());
