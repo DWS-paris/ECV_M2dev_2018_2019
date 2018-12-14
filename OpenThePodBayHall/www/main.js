@@ -91,6 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./routes/me-page/me-page.component */ "./src/app/routes/me-page/me-page.component.ts");
 /* harmony import */ var _shared_header_header_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/header/header.component */ "./src/app/shared/header/header.component.ts");
 /* harmony import */ var _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./routes/login-page/login-page.component */ "./src/app/routes/login-page/login-page.component.ts");
+/* harmony import */ var _routes_chat_page_chat_page_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./routes/chat-page/chat-page.component */ "./src/app/routes/chat-page/chat-page.component.ts");
 
 /*
 Import and definition
@@ -114,6 +115,7 @@ Import and definition
 
 
 
+
 //
 /*
 Config and export
@@ -131,7 +133,8 @@ var AppModule = /** @class */ (function () {
                 _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_9__["SigninPageComponent"],
                 _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_10__["MePageComponent"],
                 _shared_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"],
-                _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_12__["LoginPageComponent"]
+                _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_12__["LoginPageComponent"],
+                _routes_chat_page_chat_page_component__WEBPACK_IMPORTED_MODULE_13__["ChatPageComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -167,7 +170,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes/signin-page/signin-page.component */ "./src/app/routes/signin-page/signin-page.component.ts");
 /* harmony import */ var _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/me-page/me-page.component */ "./src/app/routes/me-page/me-page.component.ts");
 /* harmony import */ var _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/login-page/login-page.component */ "./src/app/routes/login-page/login-page.component.ts");
+/* harmony import */ var _routes_chat_page_chat_page_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/chat-page/chat-page.component */ "./src/app/routes/chat-page/chat-page.component.ts");
 // Import components used in the routes
+
 
 
 
@@ -197,9 +202,86 @@ var MainRouter = [
     {
         path: 'login',
         component: _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_3__["LoginPageComponent"]
+    },
+    {
+        path: 'chat',
+        component: _routes_chat_page_chat_page_component__WEBPACK_IMPORTED_MODULE_4__["ChatPageComponent"]
     }
 ];
 //
+
+
+/***/ }),
+
+/***/ "./src/app/routes/chat-page/chat-page.component.html":
+/*!***********************************************************!*\
+  !*** ./src/app/routes/chat-page/chat-page.component.html ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Chat</h2>\n<form [formGroup]=\"form\" (submit)=\"createMessage()\">\n  <textarea name=\"content\" formControlName=\"content\"></textarea>\n  <button type=\"submit\" [disabled]=\"!form.valid\">Send</button>\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/routes/chat-page/chat-page.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/routes/chat-page/chat-page.component.ts ***!
+  \*********************************************************/
+/*! exports provided: ChatPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageComponent", function() { return ChatPageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_chat_chat_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/chat/chat.service */ "./src/app/services/chat/chat.service.ts");
+/*
+Imports and config
+*/
+
+// Import the "OnInit" interface to enable Angular "ngOnInit" hook (cf. code below)
+
+// Import interface to use Angular form technic
+
+// Import the service you need to use
+
+// Config
+var ChatPageComponent = /** @class */ (function () {
+    function ChatPageComponent(ChatService, FormBuilder) {
+        var _this = this;
+        this.ChatService = ChatService;
+        this.FormBuilder = FormBuilder;
+        this.initForm = function () {
+            _this.form = _this.FormBuilder.group({
+                content: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            });
+        };
+        this.createMessage = function () {
+            _this.ChatService.createItem(_this.form.value.content)
+                .then(function (apiResponse) { return console.log(apiResponse); })
+                .catch(function (apiResponse) { return console.error(apiResponse); });
+        };
+    }
+    ChatPageComponent.prototype.ngOnInit = function () {
+        this.initForm();
+    };
+    ChatPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-chat-page',
+            template: __webpack_require__(/*! ./chat-page.component.html */ "./src/app/routes/chat-page/chat-page.component.html"),
+            providers: [_services_chat_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"]]
+        })
+        //
+        ,
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_chat_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+    ], ChatPageComponent);
+    return ChatPageComponent;
+}());
+
 
 
 /***/ }),
@@ -289,7 +371,7 @@ var LoginPageComponent = /** @class */ (function () {
         var _this = this;
         this.AuthService = AuthService;
         this.FormBuilder = FormBuilder;
-        this.resetForm = function () {
+        this.initForm = function () {
             _this.form = _this.FormBuilder.group({
                 email: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                 password: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
@@ -302,7 +384,7 @@ var LoginPageComponent = /** @class */ (function () {
         };
     }
     LoginPageComponent.prototype.ngOnInit = function () {
-        this.resetForm();
+        this.initForm();
     };
     LoginPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -521,6 +603,15 @@ var AuthService = /** @class */ (function () {
                 .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
                 .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
         };
+        this.userData = function (email, password) {
+            // Optional: set header request
+            var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
+            myHeader.append('Content-Type', 'application/json');
+            return _this.HttpClient.post(_this.apiUrl + "/login", { email: email, password: password }, { headers: myHeader })
+                .toPromise() // Use Promise in an Angular Service
+                .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
+                .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
+        };
     }
     AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
@@ -541,6 +632,68 @@ var AuthService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/services/chat/chat.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/services/chat/chat.service.ts ***!
+  \***********************************************/
+/*! exports provided: ChatService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatService", function() { return ChatService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+/*
+Imports and config
+*/
+// Use environement value
+
+// The "Injectable" interface is needed to define a service
+
+// The "HttpClient" and "HttpHeaders" interface is needed to make HTTP request
+
+// Config
+var ChatService = /** @class */ (function () {
+    function ChatService(
+    // Inject "HttpClient" in the class to use it
+    HttpClient) {
+        var _this = this;
+        this.HttpClient = HttpClient;
+        // Declare your api URL
+        this.apiUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl + "/chat";
+        this.createItem = function (content) {
+            // Optional: set header request
+            var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
+            myHeader.append('Content-Type', 'application/json');
+            return _this.HttpClient.post(_this.apiUrl, { content: content }, { headers: myHeader })
+                .toPromise() // Use Promise in an Angular Service
+                .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
+                .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
+        };
+    }
+    ChatService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+            providedIn: 'root'
+        })
+        //
+        /*
+        Export
+        */
+        ,
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ChatService);
+    return ChatService;
+}());
+
+//
+
+
+/***/ }),
+
 /***/ "./src/app/shared/header/header.component.html":
 /*!*****************************************************!*\
   !*** ./src/app/shared/header/header.component.html ***!
@@ -548,7 +701,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <h1>Open the Podbbay Door</h1>\n  <nav>\n    <!-- \n      The \"routerLink\" directive is used to create a link to a specific vue (slash is needed)\n    -->\n    <a [routerLink]=\"'/'\">Home</a>\n    <a [routerLink]=\"'/signin'\">Signup</a>\n    <a [routerLink]=\"'/login'\">Login</a>\n    <a [routerLink]=\"'/me'\">Me</a>\n  </nav>\n</header>"
+module.exports = "<header>\n  <h1>Open the Podbbay Door</h1>\n  <nav>\n    <!-- \n      The \"routerLink\" directive is used to create a link to a specific vue (slash is needed)\n    -->\n    <a [routerLink]=\"'/'\">Home</a>\n    <a [routerLink]=\"'/signin'\">Signup</a>\n    <a [routerLink]=\"'/login'\">Login</a>\n    <a [routerLink]=\"'/me'\">Me</a>\n    <a [routerLink]=\"'/chat'\">Chat</a>\n  </nav>\n</header>"
 
 /***/ }),
 

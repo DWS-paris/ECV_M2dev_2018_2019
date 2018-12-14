@@ -57,6 +57,9 @@ Routes definition
             })
 
             authRouter.get( '/me', (req, res) => {
+
+                req.cookies['OTPBDtoken']
+
                 read(req.body)
                 .then( apiResponse => sendApiSuccessResponse(res, 'User is logged', apiResponse) )
                 .catch( apiResponse => sendApiErrorResponse(res, 'Error during user login', apiResponse))

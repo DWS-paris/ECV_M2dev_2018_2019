@@ -9,11 +9,18 @@ Imports
 /*
 Service definition
 */  
+    // Extract token from cookie
+    const cookieExtractor = (req) => {
+        let token = null;
+        if (req && req.cookies) token = req.cookies['OTPBDtoken'];
+        return token;
+    };
+
     // JWT authentication
     const authJwt = (passport) => {
         // #JWT Options for passport
         const opts = {
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            jwtFromRequest: cookieExtractor,
             secretOrKey: process.env.JWT_SECRET,
         };
         
@@ -21,7 +28,9 @@ Service definition
         passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
             UserModel.findOne({ _id: jwtPayload._id }, (err, user) => {
                 if (err) { return done(err, false)}
-                if (user) { return done(null, user) }
+                if (user) { 
+                    return done(null, user) 
+                }
                 else { return done(null, false) }
             });
         }));

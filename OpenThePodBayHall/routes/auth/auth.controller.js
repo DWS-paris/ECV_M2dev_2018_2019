@@ -44,7 +44,7 @@ const login = (body, req, res) => {
                 if( !validPassword ) reject('Password not valid')
                 else {
                     // Set cookie
-                    res.cookie("OTPBDtoken", user.generateJwt(), { httpOnly: true, secure: true });
+                    res.cookie("OTPBDtoken", user.generateJwt(), { httpOnly: true });
 
                     // Resolve user data
                     resolve(user)

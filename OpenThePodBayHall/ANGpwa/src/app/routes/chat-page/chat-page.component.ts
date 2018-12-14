@@ -9,39 +9,38 @@ Imports and config
   import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
   // Import the service you need to use
-  import { AuthService } from "../../services/auth/auth.service";
+  import { ChatService } from "../../services/chat/chat.service";
 
   // Config
   @Component({
-    selector: 'app-login-page',
-    templateUrl: './login-page.component.html',
-    providers: [ AuthService ]
-  }) 
+    selector: 'app-chat-page', 
+    templateUrl: './chat-page.component.html',
+    providers: [ ChatService ]
+  })
 //
-export class LoginPageComponent implements OnInit {
-
+export class ChatPageComponent implements OnInit {
+  
   public form: FormGroup;
 
   constructor(
-    private AuthService: AuthService,
+    private ChatService: ChatService,
     private FormBuilder: FormBuilder
   ) { }
 
   private initForm = () => {
     this.form = this.FormBuilder.group({
-      email: [ undefined, Validators.required ],
-      password: [ undefined, Validators.required ]
+      content: [ undefined, Validators.required ],
     })
   }
 
-  public login = () => {
-    this.AuthService.login( this.form.value.email, this.form.value.password )
+  public createMessage = () => {
+    this.ChatService.createItem(this.form.value.content)
     .then( apiResponse => console.log(apiResponse) )
     .catch( apiResponse => console.error(apiResponse) )
   }
 
   ngOnInit() {
-    this.initForm()
+    this.initForm();
   }
 
 }
