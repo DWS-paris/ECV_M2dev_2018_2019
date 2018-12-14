@@ -13,14 +13,14 @@ Definition and export
   @Component({
     // The name of the component selector
     selector: 'app-root',
-    
+
     // Content of the vue
     template: `
       <app-header></app-header>
       
       <!--
       The "router-outlet" directive is used to define where the route components will be load.
-      All components will be load right after the "router-outlet" (check your dev. console)
+      All components will be load below the "router-outlet" directive (check your dev. console)
       -->
       <router-outlet></router-outlet>
     `

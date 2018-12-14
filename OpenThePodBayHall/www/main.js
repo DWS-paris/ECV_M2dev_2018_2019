@@ -56,7 +56,7 @@ var AppComponent = /** @class */ (function () {
             // The name of the component selector
             selector: 'app-root',
             // Content of the vue
-            template: "\n      <app-header></app-header>\n      \n      <!--\n      The \"router-outlet\" directive is used to define where the route components will be load.\n      All components will be load right after the \"router-outlet\" (check your dev. console)\n      -->\n      <router-outlet></router-outlet>\n    "
+            template: "\n      <app-header></app-header>\n      \n      <!--\n      The \"router-outlet\" directive is used to define where the route components will be load.\n      All components will be load below the \"router-outlet\" directive (check your dev. console)\n      -->\n      <router-outlet></router-outlet>\n    "
         })
         // Export
     ], AppComponent);
