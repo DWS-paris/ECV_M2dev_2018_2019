@@ -1,39 +1,56 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+/* 
+Import and definition
+*/
+  // Basic interfaces to declare an Angular Module
+  import { BrowserModule } from '@angular/platform-browser';
+  import { NgModule } from '@angular/core';
 
-// Importer le module pour la gestion des routes
-import { RouterModule } from '@angular/router';
+  // Import the interface to enable HTTP request (need to be add in "imports" array)
+  import { HttpClientModule } from '@angular/common/http';
 
-// Imprter le router
-import { MainRouter } from "./app.router";
+  // Import the iterface to create a router (need to be add in "imports" array)
+  import { RouterModule } from '@angular/router';
 
-// Importer les modules pour la gestion des formulaire
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+  // Import the application router (need to be associated to "RouterModule")
+  import { MainRouter } from "./app.router";
 
-import { HttpClientModule } from '@angular/common/http';
+  // Import form interfaces for complete form ability (need to be add in "imports" array)
+  import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { HomePageComponent } from './routes/home-page/home-page.component';
-import { SigninPageComponent } from './routes/signin-page/signin-page.component';
-import { MePageComponent } from './routes/me-page/me-page.component';
-import { HeaderComponent } from './shared/header/header.component';
+  // Import the main appication component (need to be add in "declarations" array)
+  import { AppComponent } from './app.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent,
-    SigninPageComponent,
-    MePageComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(MainRouter),
-    FormsModule, 
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+  // Import the route components (need to be add in "declarations" array)
+  import { HomePageComponent } from './routes/home-page/home-page.component';
+  import { SigninPageComponent } from './routes/signin-page/signin-page.component';
+  import { MePageComponent } from './routes/me-page/me-page.component';
+  import { HeaderComponent } from './shared/header/header.component';
+//
+
+
+/* 
+Config and export
+*/
+  // Config
+  @NgModule({
+    declarations: [ // All used component need to be declared in the "declarations" array
+      AppComponent,
+      HomePageComponent,
+      SigninPageComponent,
+      MePageComponent,
+      HeaderComponent
+    ],
+    imports: [ // All used module need to be declared in the "imports" array
+      BrowserModule,
+      HttpClientModule,
+      RouterModule.forRoot(MainRouter), // Use "RouterModule" to define "MainRouter" has root router
+      FormsModule, 
+      ReactiveFormsModule
+    ],
+    providers: [], // Global provider can be declared in the "providers" array
+    bootstrap: [ AppComponent ] // Boostrap property is used to deploy application
+  })
+
+  // Export
+  export class AppModule { }
+//

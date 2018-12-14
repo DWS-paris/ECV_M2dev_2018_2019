@@ -36,19 +36,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 
+/*
+Imports
+*/
+// The "Component" interface is needed to declare a component
 
+//
+/*
+Definition and export
+
+*/
+// Definition
 var AppComponent = /** @class */ (function () {
+    // Export
     function AppComponent() {
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            // The name of the component selector
             selector: 'app-root',
-            template: "\n    <app-header></app-header>\n    <router-outlet></router-outlet>\n  "
+            // Content of the vue
+            template: "\n      <app-header></app-header>\n      \n      <!--\n      The \"router-outlet\" directive is used to define where the route components will be load.\n      All components will be load right after the \"router-outlet\" (check your dev. console)\n      -->\n      <router-outlet></router-outlet>\n    "
         })
+        // Export
     ], AppComponent);
     return AppComponent;
 }());
 
+//
 
 
 /***/ }),
@@ -66,31 +81,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.router */ "./src/app/app.router.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.router */ "./src/app/app.router.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _routes_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./routes/home-page/home-page.component */ "./src/app/routes/home-page/home-page.component.ts");
 /* harmony import */ var _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./routes/signin-page/signin-page.component */ "./src/app/routes/signin-page/signin-page.component.ts");
 /* harmony import */ var _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./routes/me-page/me-page.component */ "./src/app/routes/me-page/me-page.component.ts");
 /* harmony import */ var _shared_header_header_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/header/header.component */ "./src/app/shared/header/header.component.ts");
 
+/*
+Import and definition
+*/
+// Basic interfaces to declare an Angular Module
 
 
-// Importer le module pour la gestion des routes
+// Import the interface to enable HTTP request (need to be add in "imports" array)
 
-// Imprter le router
+// Import the iterface to create a router (need to be add in "imports" array)
 
-// Importer les modules pour la gestion des formulaire
+// Import the application router (need to be associated to "RouterModule")
+
+// Import form interfaces for complete form ability (need to be add in "imports" array)
+
+// Import the main appication component (need to be add in "declarations" array)
+
+// Import the route components (need to be add in "declarations" array)
 
 
 
 
-
-
-
+//
+/*
+Config and export
+*/
+// Config
 var AppModule = /** @class */ (function () {
+    // Export
     function AppModule() {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -104,18 +132,20 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forRoot(_app_router__WEBPACK_IMPORTED_MODULE_4__["MainRouter"]),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(_app_router__WEBPACK_IMPORTED_MODULE_5__["MainRouter"]),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]] // Boostrap property is used to deploy application
         })
+        // Export
     ], AppModule);
     return AppModule;
 }());
 
+//
 
 
 /***/ }),
@@ -133,18 +163,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes/home-page/home-page.component */ "./src/app/routes/home-page/home-page.component.ts");
 /* harmony import */ var _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes/signin-page/signin-page.component */ "./src/app/routes/signin-page/signin-page.component.ts");
 /* harmony import */ var _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/me-page/me-page.component */ "./src/app/routes/me-page/me-page.component.ts");
-// Inner
+// Import components used in the routes
 
 
 
 //
 /*
-Exporter une contante pour définir le comportement de la routex
+Export a contant to define routes
+- Create an array of type Routes
+- Each route is an object:
+    - "path" is the endpoint (slash isn't needed)
+    - "component" is the component used in the route
+    - Other options are avaible here https://angular.io/api/router/Routes
 */
 var MainRouter = [
     {
         path: '',
-        component: _routes_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_0__["HomePageComponent"]
+        component: _routes_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_0__["HomePageComponent"],
     },
     {
         path: 'signin',
@@ -273,12 +308,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/auth/auth.service */ "./src/app/services/auth/auth.service.ts");
+/*
+Imports and config
+*/
 
+// Import the "OnInit" interface to enable Angular "ngOnInit" hook (cf. code below)
 
-// Importer les interface pour configurer le formulaire
+// Import interface to use Angular form technic
 
-// Importer le service
+// Import the service you need to use
 
+// Config
 var SigninPageComponent = /** @class */ (function () {
     function SigninPageComponent(FormBuilder, AuthService) {
         var _this = this;
@@ -306,14 +346,21 @@ var SigninPageComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-signin-page',
             template: __webpack_require__(/*! ./signin-page.component.html */ "./src/app/routes/signin-page/signin-page.component.html"),
-            providers: [_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]]
-        }),
+            providers: [_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]] // All used service must be declared in the "providers" array
+        })
+        //
+        /*
+        Export
+        */
+        // To use "ngOnInit" hook you need to implelment it in the class
+        ,
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
     ], SigninPageComponent);
     return SigninPageComponent;
 }());
 
+//
 
 
 /***/ }),
@@ -329,36 +376,64 @@ var SigninPageComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 
+/*
+Imports and config
+*/
+// Use environement value
 
+// The "Injectable" interface is needed to define a service
 
+// The "HttpClient" and "HttpHeaders" interface is needed to make HTTP request
 
+// Config
 var AuthService = /** @class */ (function () {
-    function AuthService(HttpClient) {
+    function AuthService(
+    // Inject "HttpClient" in the class to use it
+    HttpClient) {
         var _this = this;
         this.HttpClient = HttpClient;
-        this.apiUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + "/auth";
+        // Declare your api URL
+        this.apiUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl + "/auth";
+        /*
+        Function to register a user
+        - Param need to be type "UserModel"
+        - Function return a Promise
+        */
         this.signin = function (data) {
+            // Optional: set header request
             var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
             myHeader.append('Content-Type', 'application/json');
+            /*
+            Return a HTTP post request
+            - Param one: API endpoint
+            - Param two: data to send
+            - Param tree (optional): request header
+            */
             return _this.HttpClient.post(_this.apiUrl + "/register", data, { headers: myHeader })
-                .toPromise()
-                .then(function (apiResponse) { return Promise.resolve(apiResponse); })
-                .catch(function (apiResponse) { return Promise.reject(apiResponse); });
+                .toPromise() // Use Promise in an Angular Service
+                .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
+                .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
         };
     }
     AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
             providedIn: 'root'
-        }),
+        })
+        //
+        /*
+        Export
+        */
+        ,
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], AuthService);
     return AuthService;
 }());
 
+//
 
 
 /***/ }),
