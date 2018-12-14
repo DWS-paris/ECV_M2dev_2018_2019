@@ -24,7 +24,6 @@ Routes definition
 
             // Register
             authRouter.post( '/register', (req, res) => {
-                res.cookie('SESS-MCBA', 'John Doe', { signed: true, httpOnly: true });
 
                 // Error: no body present
                 if (typeof req.body === 'undefined' || req.body === null) { sendBodyError(res, 'No body data provided') }
@@ -42,7 +41,6 @@ Routes definition
 
             // login
             authRouter.post( '/login', (req, res) => {
-                console.log(req.signedCookies['SESS-MCBA'])
 
                 // Error: no body present
                 if (typeof req.body === 'undefined' || req.body === null) { sendBodyError(res, 'No body data provided') }
@@ -52,7 +50,7 @@ Routes definition
                 if (!ok) { sendFieldsError(res, 'Bad fields provided', miss, extra) }
                 //=> Request is valid: use controller
                 else{
-                    login(req.body, req)
+                    login(req.body, req, res)
                     .then( apiResponse => sendApiSuccessResponse(res, 'User is logged', apiResponse) )
                     .catch( apiResponse => sendApiErrorResponse(res, 'Error during user login', apiResponse))
                 }

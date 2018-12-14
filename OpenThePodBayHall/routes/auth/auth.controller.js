@@ -33,7 +33,7 @@ const register = (body, res) => {
     });
 };
 
-const login = (body, req) => {
+const login = (body, req, res) => {
     return new Promise( (resolve, reject) => {
         UserModel.findOne( {email: body.email}, (error, user) =>{
             if(error) reject(error)
@@ -42,10 +42,13 @@ const login = (body, req) => {
                 // Check password
                 const validPassword = bcrypt.compareSync(body.password, user.password);
                 if( !validPassword ) reject('Password not valid')
-                else resolve({
-                    user: user,
-                    token: user.generateJwt()
-                })
+                else {
+                    // Set cookie
+                    res.cookie("OTPBDtoken", user.generateJwt(), { httpOnly: true, secure: true });
+
+                    // Resolve user data
+                    resolve(user)
+                }
             }
         } )
     })
@@ -57,7 +60,6 @@ const read = body => {
         UserModel.findOne( { email: body.email }, (error, user) => {
             if(error) reject(error) // Mongo Error
             else {
-                console.log(user)
                 return resolve(user)
             };
         });

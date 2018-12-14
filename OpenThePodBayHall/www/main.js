@@ -90,6 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./routes/signin-page/signin-page.component */ "./src/app/routes/signin-page/signin-page.component.ts");
 /* harmony import */ var _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./routes/me-page/me-page.component */ "./src/app/routes/me-page/me-page.component.ts");
 /* harmony import */ var _shared_header_header_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/header/header.component */ "./src/app/shared/header/header.component.ts");
+/* harmony import */ var _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./routes/login-page/login-page.component */ "./src/app/routes/login-page/login-page.component.ts");
 
 /*
 Import and definition
@@ -112,6 +113,7 @@ Import and definition
 
 
 
+
 //
 /*
 Config and export
@@ -128,7 +130,8 @@ var AppModule = /** @class */ (function () {
                 _routes_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_8__["HomePageComponent"],
                 _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_9__["SigninPageComponent"],
                 _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_10__["MePageComponent"],
-                _shared_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"]
+                _shared_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"],
+                _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_12__["LoginPageComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -163,7 +166,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes/home-page/home-page.component */ "./src/app/routes/home-page/home-page.component.ts");
 /* harmony import */ var _routes_signin_page_signin_page_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes/signin-page/signin-page.component */ "./src/app/routes/signin-page/signin-page.component.ts");
 /* harmony import */ var _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/me-page/me-page.component */ "./src/app/routes/me-page/me-page.component.ts");
+/* harmony import */ var _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/login-page/login-page.component */ "./src/app/routes/login-page/login-page.component.ts");
 // Import components used in the routes
+
 
 
 
@@ -188,6 +193,10 @@ var MainRouter = [
     {
         path: 'me',
         component: _routes_me_page_me_page_component__WEBPACK_IMPORTED_MODULE_2__["MePageComponent"]
+    },
+    {
+        path: 'login',
+        component: _routes_login_page_login_page_component__WEBPACK_IMPORTED_MODULE_3__["LoginPageComponent"]
     }
 ];
 //
@@ -233,6 +242,80 @@ var HomePageComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], HomePageComponent);
     return HomePageComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/routes/login-page/login-page.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/routes/login-page/login-page.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Login</h2>\n<form [formGroup]=\"form\" (submit)=\"login()\">\n  <input type=\"email\" name=\"email\" formControlName=\"email\">\n  <input type=\"password\" name=\"password\" formControlName=\"password\">\n  \n  <button type=\"submit\" [disabled]=\"!form.valid\">Login</button>\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/routes/login-page/login-page.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/routes/login-page/login-page.component.ts ***!
+  \***********************************************************/
+/*! exports provided: LoginPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageComponent", function() { return LoginPageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/auth/auth.service */ "./src/app/services/auth/auth.service.ts");
+/*
+Imports and config
+*/
+
+// Import the "OnInit" interface to enable Angular "ngOnInit" hook (cf. code below)
+
+// Import interface to use Angular form technic
+
+// Import the service you need to use
+
+// Config
+var LoginPageComponent = /** @class */ (function () {
+    function LoginPageComponent(AuthService, FormBuilder) {
+        var _this = this;
+        this.AuthService = AuthService;
+        this.FormBuilder = FormBuilder;
+        this.resetForm = function () {
+            _this.form = _this.FormBuilder.group({
+                email: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                password: [undefined, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            });
+        };
+        this.login = function () {
+            _this.AuthService.login(_this.form.value.email, _this.form.value.password)
+                .then(function (apiResponse) { return console.log(apiResponse); })
+                .catch(function (apiResponse) { return console.error(apiResponse); });
+        };
+    }
+    LoginPageComponent.prototype.ngOnInit = function () {
+        this.resetForm();
+    };
+    LoginPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-login-page',
+            template: __webpack_require__(/*! ./login-page.component.html */ "./src/app/routes/login-page/login-page.component.html"),
+            providers: [_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]]
+        })
+        //
+        ,
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+    ], LoginPageComponent);
+    return LoginPageComponent;
 }());
 
 
@@ -343,7 +426,7 @@ var SigninPageComponent = /** @class */ (function () {
             Send data to the service
             - Data must be "UserModel" typed (cf. AuthService code)
             */
-            _this.AuthService.signin(_this.form.value)
+            _this.AuthService.signup(_this.form.value)
                 .then(function (apiResponse) { return console.log(apiResponse); })
                 .catch(function (apiResponse) { return console.error(apiResponse); });
         };
@@ -414,7 +497,7 @@ var AuthService = /** @class */ (function () {
         - Param need to be type "UserModel"
         - Function return a Promise
         */
-        this.signin = function (data) {
+        this.signup = function (data) {
             // Optional: set header request
             var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
             myHeader.append('Content-Type', 'application/json');
@@ -425,6 +508,15 @@ var AuthService = /** @class */ (function () {
             - Param tree (optional): request header
             */
             return _this.HttpClient.post(_this.apiUrl + "/register", data, { headers: myHeader })
+                .toPromise() // Use Promise in an Angular Service
+                .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
+                .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
+        };
+        this.login = function (email, password) {
+            // Optional: set header request
+            var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
+            myHeader.append('Content-Type', 'application/json');
+            return _this.HttpClient.post(_this.apiUrl + "/login", { email: email, password: password }, { headers: myHeader })
                 .toPromise() // Use Promise in an Angular Service
                 .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
                 .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
@@ -456,7 +548,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <h1>Open the Podbbay Door</h1>\n  <nav>\n    <!-- \n      The \"routerLink\" directive is used to create a link to a specific vue (slash is needed)\n    -->\n    <a [routerLink]=\"'/'\">Home</a>\n    <a [routerLink]=\"'/signin'\">Signin</a>\n    <a [routerLink]=\"'/me'\">Me</a>\n  </nav>\n</header>"
+module.exports = "<header>\n  <h1>Open the Podbbay Door</h1>\n  <nav>\n    <!-- \n      The \"routerLink\" directive is used to create a link to a specific vue (slash is needed)\n    -->\n    <a [routerLink]=\"'/'\">Home</a>\n    <a [routerLink]=\"'/signin'\">Signup</a>\n    <a [routerLink]=\"'/login'\">Login</a>\n    <a [routerLink]=\"'/me'\">Me</a>\n  </nav>\n</header>"
 
 /***/ }),
 

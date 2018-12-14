@@ -8,6 +8,7 @@ Imports
     import { HomePageComponent } from "./routes/home-page/home-page.component";
     import { SigninPageComponent } from "./routes/signin-page/signin-page.component";
     import { MePageComponent } from "./routes/me-page/me-page.component";
+    import { LoginPageComponent } from "./routes/login-page/login-page.component";
 //
 
 /* 
@@ -30,6 +31,10 @@ Export a contant to define routes
         {
             path: 'me',
             component: MePageComponent
+        },
+        {
+            path: 'login',
+            component: LoginPageComponent
         }
     ]
 //

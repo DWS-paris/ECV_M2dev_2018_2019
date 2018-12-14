@@ -52,7 +52,7 @@ Export
       Send data to the service
       - Data must be "UserModel" typed (cf. AuthService code)
       */
-      this.AuthService.signin( this.form.value )
+      this.AuthService.signup( this.form.value )
       .then( apiResponse => console.log(apiResponse) )
       .catch( apiResponse => console.error(apiResponse) )
     }

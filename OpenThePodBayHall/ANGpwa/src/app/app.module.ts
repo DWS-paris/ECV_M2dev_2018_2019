@@ -25,6 +25,7 @@ Import and definition
   import { SigninPageComponent } from './routes/signin-page/signin-page.component';
   import { MePageComponent } from './routes/me-page/me-page.component';
   import { HeaderComponent } from './shared/header/header.component';
+  import { LoginPageComponent } from './routes/login-page/login-page.component';
 //
 
 
@@ -38,7 +39,8 @@ Config and export
       HomePageComponent,
       SigninPageComponent,
       MePageComponent,
-      HeaderComponent
+      HeaderComponent,
+      LoginPageComponent
     ],
     imports: [ // All used module need to be declared in the "imports" array
       BrowserModule,
