@@ -456,7 +456,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <h1>Open the Podbbay Door</h1>\n  <nav>\n    <a [routerLink]=\"'/'\">Home</a>\n    <a [routerLink]=\"'/signin'\">Signin</a>\n    <a [routerLink]=\"'/me'\">Me</a>\n  </nav>\n</header>"
+module.exports = "<header>\n  <h1>Open the Podbbay Door</h1>\n  <nav>\n    <!-- \n      The \"routerLink\" directive is used to create a link to a specific vue (slash is needed)\n    -->\n    <a [routerLink]=\"'/'\">Home</a>\n    <a [routerLink]=\"'/signin'\">Signin</a>\n    <a [routerLink]=\"'/me'\">Me</a>\n  </nav>\n</header>"
 
 /***/ }),
 
