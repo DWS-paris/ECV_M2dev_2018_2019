@@ -11,7 +11,7 @@ Routes definition
     class FrontRouterClass {
         routes(){
             // Main route
-            frontRouter.get( ['/'], (req, res) => {
+            frontRouter.get( '/*', (req, res) => {
                 res.render('index')
             });
         };

@@ -15,17 +15,26 @@ Imports and config
   @Component({
     selector: 'app-chat-page', 
     templateUrl: './chat-page.component.html',
-    providers: [ ChatService ]
+    providers: [ ChatService ],
+    styles: [`
+      .active{
+        color: red
+      }
+    `]
   })
 //
 export class ChatPageComponent implements OnInit {
   
   public form: FormGroup;
+  public chatCollection: any;
+  public isActive: boolean;
 
   constructor(
     private ChatService: ChatService,
     private FormBuilder: FormBuilder
-  ) { }
+  ) { 
+    this.isActive = false;
+  }
 
   private initForm = () => {
     this.form = this.FormBuilder.group({
@@ -39,8 +48,19 @@ export class ChatPageComponent implements OnInit {
     .catch( apiResponse => console.error(apiResponse) )
   }
 
-  ngOnInit() {
-    this.initForm();
+  private getAllChats = () => {
+    this.ChatService.readAllItem()
+    .then( apiResponse => {
+      console.log(apiResponse)
+      this.chatCollection = apiResponse.data;
+    })
+    .catch( apiResponse => {
+      console.error(apiResponse)
+    })
   }
 
+  ngOnInit() {
+    this.initForm();
+    this.getAllChats();
+  }
 }

@@ -220,7 +220,7 @@ var MainRouter = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Chat</h2>\n<form [formGroup]=\"form\" (submit)=\"createMessage()\">\n  <textarea name=\"content\" formControlName=\"content\"></textarea>\n  <button type=\"submit\" [disabled]=\"!form.valid\">Send</button>\n</form>"
+module.exports = "<!-- Ajouter une condition dans le DOM : ngIf  -->\n<section *ngIf=\"chatCollection\">\n  \n  <!-- Boucle dans le DOM : ngFor  -->\n  <article *ngFor=\"let item of chatCollection\">\n    <p \n      [textContent]=\"item.chat.content\"\n      [ngClass]=\"{'active': isActive}\"\n      (click)=\"isActive = !isActive\"\n    ></p>\n  </article>\n</section>\n\n<section>\n  <form [formGroup]=\"form\" (submit)=\"createMessage()\">\n    <textarea name=\"content\" formControlName=\"content\"></textarea>\n    <button type=\"submit\" [disabled]=\"!form.valid\">Send</button>\n  </form>\n</section>"
 
 /***/ }),
 
@@ -264,15 +264,28 @@ var ChatPageComponent = /** @class */ (function () {
                 .then(function (apiResponse) { return console.log(apiResponse); })
                 .catch(function (apiResponse) { return console.error(apiResponse); });
         };
+        this.getAllChats = function () {
+            _this.ChatService.readAllItem()
+                .then(function (apiResponse) {
+                console.log(apiResponse);
+                _this.chatCollection = apiResponse.data;
+            })
+                .catch(function (apiResponse) {
+                console.error(apiResponse);
+            });
+        };
+        this.isActive = false;
     }
     ChatPageComponent.prototype.ngOnInit = function () {
         this.initForm();
+        this.getAllChats();
     };
     ChatPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-chat-page',
             template: __webpack_require__(/*! ./chat-page.component.html */ "./src/app/routes/chat-page/chat-page.component.html"),
-            providers: [_services_chat_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"]]
+            providers: [_services_chat_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"]],
+            styles: ["\n      .active{\n        color: red\n      }\n    "]
         })
         //
         ,
@@ -670,6 +683,15 @@ var ChatService = /** @class */ (function () {
             var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
             myHeader.append('Content-Type', 'application/json');
             return _this.HttpClient.post(_this.apiUrl, { content: content }, { headers: myHeader })
+                .toPromise() // Use Promise in an Angular Service
+                .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
+                .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error
+        };
+        this.readAllItem = function () {
+            // Optional: set header request
+            var myHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
+            myHeader.append('Content-Type', 'application/json');
+            return _this.HttpClient.get(_this.apiUrl, { headers: myHeader })
                 .toPromise() // Use Promise in an Angular Service
                 .then(function (apiResponse) { return Promise.resolve(apiResponse); }) // Resolve Promise success
                 .catch(function (apiResponse) { return Promise.reject(apiResponse); }); // Reject Promise error

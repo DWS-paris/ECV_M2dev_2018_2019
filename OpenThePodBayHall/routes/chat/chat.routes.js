@@ -29,6 +29,7 @@ Routes definition
 
             // Read : afficher la liste des messages du chat
             chatRouter.get( '/', (req, res) => {
+                console.log('test API chat')
                 readItem()
                 .then( apiResponse => sendApiSuccessResponse(res, 'Chat received', apiResponse) )
                 .catch( apiResponse => sendApiErrorResponse(res, 'Error during fetch', apiResponse))

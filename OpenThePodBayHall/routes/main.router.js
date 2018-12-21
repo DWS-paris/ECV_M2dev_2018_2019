@@ -4,6 +4,7 @@ Imports
     const { Router } = require('express');
     const AuthRouterClass = require('./auth/auth.routes');
     const ChatRouterClass = require('./chat/chat.routes');
+    const FrontRouterClass = require('./front/front.routes')
 //
 
 /* 
@@ -22,17 +23,22 @@ Define routers
     const mainRouter = Router();
     const apiRouter = Router();
 
+
     // Child
     const authRouter = new AuthRouterClass();
     const chatRouter = new ChatRouterClass( { passport } );
+    const frontRouter = new FrontRouterClass();
 //
 
 /*
 Configure routes
 */
+    
     mainRouter.use('/api', apiRouter);
     apiRouter.use('/auth', authRouter.init());
     apiRouter.use('/chat', chatRouter.init());
+    
+    mainRouter.use('/', frontRouter.init());
 //
 
 /*

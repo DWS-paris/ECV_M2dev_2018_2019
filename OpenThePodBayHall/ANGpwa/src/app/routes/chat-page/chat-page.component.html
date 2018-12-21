@@ -1,5 +1,19 @@
-<h2>Chat</h2>
-<form [formGroup]="form" (submit)="createMessage()">
-  <textarea name="content" formControlName="content"></textarea>
-  <button type="submit" [disabled]="!form.valid">Send</button>
-</form>
+<!-- Ajouter une condition dans le DOM : ngIf  -->
+<section *ngIf="chatCollection">
+  
+  <!-- Boucle dans le DOM : ngFor  -->
+  <article *ngFor="let item of chatCollection">
+    <p 
+      [textContent]="item.chat.content"
+      [ngClass]="{'active': isActive}"
+      (click)="isActive = !isActive"
+    ></p>
+  </article>
+</section>
+
+<section>
+  <form [formGroup]="form" (submit)="createMessage()">
+    <textarea name="content" formControlName="content"></textarea>
+    <button type="submit" [disabled]="!form.valid">Send</button>
+  </form>
+</section>

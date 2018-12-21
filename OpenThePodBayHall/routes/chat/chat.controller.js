@@ -33,6 +33,7 @@ Methods
                 else {
                     // resolve(chat)
                     let chatArray = [];
+
                     ((async function loop() {
                         for (let i = 0; i < chat.length; ++i) {
                             const user = await getChatUser(chat[i].author);
@@ -66,7 +67,7 @@ Methods
     const getChatUser = id => {
         console.log(id)
         return new Promise( (resolve, reject) => {
-            UserModel.findById( id, { email:1, _id: 0 }, (error, user) => {
+            UserModel.findById( id, (error, user) => {
                 if(error) return reject(error) // Mongo Error
                 else {
                     console.log(user)
